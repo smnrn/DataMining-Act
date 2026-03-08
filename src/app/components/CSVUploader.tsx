@@ -9,9 +9,10 @@ import { Transaction } from '../lib/apriori';
 
 interface CSVUploaderProps {
   onTransactionsLoaded: (transactions: Transaction[]) => void;
+  className?: string;
 }
 
-export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
+export function CSVUploader({ onTransactionsLoaded, className }: CSVUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadResult, setUploadResult] = useState<{
@@ -103,7 +104,7 @@ export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
   };
 
   return (
-    <Card>
+    <Card className={`border-dashed border-[#2C2C2C] transition-colors duration-300 hover:bg-[#D8C3A5]/20 ${className || ''}`}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Upload className="w-5 h-5" />
@@ -143,7 +144,7 @@ export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
         {isUploading && (
           <div className="space-y-2">
             <Progress value={uploadProgress} />
-            <p className="text-xs text-gray-600 text-center">
+            <p className="text-xs text-[#716A5C] text-center font-serif">
               Loading... {uploadProgress}%
             </p>
           </div>
@@ -151,18 +152,18 @@ export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
 
         {/* Upload Result */}
         {uploadResult && (
-          <Alert className={uploadResult.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}>
+          <Alert className={uploadResult.success ? 'bg-[#F4ECE1] border-[#C3AD8F]' : 'bg-[#FDF8F5] border-[#D8C3A5]'}>
             {uploadResult.success ? (
-              <CheckCircle className="h-4 w-4 text-green-600" />
+              <CheckCircle className="h-4 w-4 text-[#5E503F]" />
             ) : (
-              <AlertCircle className="h-4 w-4 text-red-600" />
+              <AlertCircle className="h-4 w-4 text-[#8A7968]" />
             )}
             <AlertDescription>
-              <div className={uploadResult.success ? 'text-green-900' : 'text-red-900'}>
-                <p className="font-medium">{uploadResult.message}</p>
+              <div className="text-[#2C2C2C]">
+                <p className="font-serif font-medium">{uploadResult.message}</p>
                 
                 {uploadResult.success && uploadResult.details && (
-                  <div className="mt-2 text-sm space-y-1">
+                  <div className="mt-2 text-sm space-y-1 font-serif">
                     <p>• Transactions: {uploadResult.details.transactionsLoaded}</p>
                     <p>• Total Revenue: {formatPhp(uploadResult.details.totalRevenue)}</p>
                     <p>• Avg Basket Size: {uploadResult.details.averageBasketSize.toFixed(1)} items</p>
@@ -171,7 +172,7 @@ export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
                 )}
                 
                 {!uploadResult.success && uploadResult.details?.errors && (
-                  <div className="mt-2 text-sm">
+                  <div className="mt-2 text-sm font-serif">
                     <p className="font-medium">Errors:</p>
                     <ul className="list-disc list-inside">
                       {uploadResult.details.errors.map((error: string, i: number) => (
@@ -186,19 +187,19 @@ export function CSVUploader({ onTransactionsLoaded }: CSVUploaderProps) {
         )}
 
         {/* CSV Format Info */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
-          <p className="font-medium text-blue-900 mb-1">CSV Format:</p>
-          <p className="text-blue-700 text-xs mb-2">
+        <div className="bg-[#FAF8F5] border border-[#EBE4D5] rounded-lg p-3 text-sm">
+          <p className="font-serif font-medium text-[#2C2C2C] mb-1">CSV Format:</p>
+          <p className="text-[#716A5C] text-xs mb-2 font-serif">
             Upload your transaction CSV files (transactions_A.csv or transactions_B.csv).
             Each row should contain comma-separated product names.
           </p>
-          <div className="bg-white rounded p-2 text-xs font-mono mb-2">
-            <div className="text-gray-500">items</div>
+          <div className="bg-white border border-[#EBE4D5] rounded p-2 text-xs font-mono mb-2 text-[#4A4A4A]">
+            <div className="text-[#8C7A6B] italic">items</div>
             <div>Red-Love</div>
             <div>"Matchstick-Jar,Rose-Scent"</div>
             <div>"Green-Wealth,Eucalyptus-Scent,Gold-Success"</div>
           </div>
-          <p className="text-xs text-blue-600 font-medium">
+          <p className="text-xs text-[#5E503F] font-serif font-medium">
             📁 Use the provided transactions_A.csv or transactions_B.csv files
           </p>
         </div>

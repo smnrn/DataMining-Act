@@ -1,4 +1,4 @@
-import { TrendingUp, Package, Activity } from 'lucide-react';
+import { TrendingUp, Package, Activity, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Progress } from './ui/progress';
 
@@ -31,93 +31,99 @@ export function SystemMetrics({ stats }: SystemMetricsProps) {
     <div className="space-y-4">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="bg-[#FAF8F5] border-[#D1C7B7] shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="w-4 h-4 text-blue-600" />
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-[#716A5C] uppercase tracking-wider">
+              <Activity className="w-4 h-4 text-[#8C7A6B]" />
               Transactions
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats.totalTransactions}</div>
-            <p className="text-xs text-gray-600 mt-1">
-              Avg basket: {stats.averageBasketSize.toFixed(1)} items
+            <div className="text-3xl font-serif font-bold text-[#2C2C2C]">{stats.totalTransactions}</div>
+            <p className="text-xs text-[#716A5C] mt-1">
+              Avg basket: <span className="font-semibold">{stats.averageBasketSize.toFixed(1)}</span> items
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-[#FAF8F5] border-[#D1C7B7] shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Package className="w-4 h-4 text-green-600" />
-              Patterns Found
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-[#716A5C] uppercase tracking-wider">
+              <Package className="w-4 h-4 text-[#8C7A6B]" />
+              Patterns Mined
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats.associationRulesCount}</div>
-            <p className="text-xs text-gray-600 mt-1">
-              From {stats.frequentItemsetsCount} itemsets
+            <div className="text-3xl font-serif font-bold text-[#2C2C2C]">{stats.associationRulesCount}</div>
+            <p className="text-xs text-[#716A5C] mt-1">
+              From <span className="font-semibold">{stats.frequentItemsetsCount}</span> itemsets
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-[#FAF8F5] border-[#D1C7B7] shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-purple-600" />
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-[#716A5C] uppercase tracking-wider">
+              <TrendingUp className="w-4 h-4 text-[#8C7A6B]" />
               Total Revenue
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">${stats.totalRevenue.toFixed(2)}</div>
-            <p className="text-xs text-gray-600 mt-1">
-              Across {stats.totalProducts} unique products
+            <div className="text-3xl font-serif font-bold text-[#2C2C2C]">₱{stats.totalRevenue.toFixed(2)}</div>
+            <p className="text-xs text-[#716A5C] mt-1">
+              Across <span className="font-semibold">{stats.totalProducts}</span> unique fragrances
             </p>
           </CardContent>
         </Card>
       </div>
 
       {/* Learning Progress */}
-      <Card>
+      <Card className="bg-[#FDFBF7] border-[#EBE4D5] shadow-sm">
         <CardHeader>
-          <CardTitle>ML System Status</CardTitle>
-          <CardDescription>
-            System learns automatically after every 5 transactions
+          <CardTitle className="font-serif text-xl flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-[#8C7A6B]" />
+            Artisanal Intelligence Status
+          </CardTitle>
+          <CardDescription className="text-[#716A5C]">
+            Model refines continuously after every 5 transactions
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium">Learning Progress</span>
-              <span className="text-sm text-gray-600">
+        <CardContent className="space-y-5">
+          <div className="bg-white p-4 rounded-xl border border-[#EBE4D5]">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-[#2C2C2C] uppercase tracking-wider">Learning Progress</span>
+              <span className="text-sm text-[#8C7A6B] font-semibold">
                 {stats.totalTransactions} / 100 transactions
               </span>
             </div>
-            <Progress value={learningProgress} />
-            <p className="text-xs text-gray-600 mt-1">
-              More transactions = better recommendations
+            <Progress value={learningProgress} className="h-2.5" />
+            <p className="text-xs text-[#716A5C] mt-3 italic text-center">
+              More transaction history = deeper, more personalized insights
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-2 border-t">
-            <div>
-              <div className="text-sm text-gray-600">Training Runs</div>
-              <div className="text-2xl font-bold">{stats.trainingCount}</div>
+          <div className="grid grid-cols-2 gap-4 pt-2">
+            <div className="bg-[#FAF8F5] p-3 rounded-lg border border-[#EBE4D5] text-center">
+              <div className="text-xs text-[#716A5C] uppercase tracking-wider mb-1">Model Iterations</div>
+              <div className="text-2xl font-serif font-bold text-[#2C2C2C]">{stats.trainingCount}</div>
             </div>
-            <div>
-              <div className="text-sm text-gray-600">Last Training</div>
-              <div className="text-2xl font-bold">
+            <div className="bg-[#FAF8F5] p-3 rounded-lg border border-[#EBE4D5] text-center">
+              <div className="text-xs text-[#716A5C] uppercase tracking-wider mb-1">Last Refined</div>
+              <div className="text-2xl font-serif font-bold text-[#8C7A6B]">
                 {formatTimeSince(stats.lastTrainingTime)}
               </div>
             </div>
           </div>
 
           {stats.totalTransactions > 0 && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <div className="text-sm font-medium text-blue-900">System is Learning</div>
-              <div className="text-xs text-blue-700 mt-1">
-                The ML engine mines patterns using the Apriori algorithm and updates recommendations
-                automatically as new transactions are added.
+            <div className="bg-[#EBE4D5]/30 border border-[#D1C7B7] rounded-lg p-4 flex gap-3">
+              <Sparkles className="w-5 h-5 text-[#8C7A6B] flex-shrink-0 mt-0.5" />
+              <div>
+                <div className="text-sm font-semibold text-[#2C2C2C] mb-1 font-serif">Model Actively Learning</div>
+                <div className="text-xs text-[#4A4A4A] leading-relaxed">
+                  The ML engine is discovering fragrance affinities using the Apriori algorithm. 
+                  Recommendations organically evolve as new purchases are recorded.
+                </div>
               </div>
             </div>
           )}

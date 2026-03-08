@@ -36,9 +36,9 @@ export function Recommendations({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-gray-500">
-            <Sparkles className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <p>No recommendations yet.</p>
+          <div className="text-center py-8 text-[#716A5C]">
+            <Sparkles className="w-12 h-12 mx-auto mb-3 opacity-30 text-[#8C7A6B]" />
+            <p className="font-serif text-lg text-[#2C2C2C]">No recommendations yet.</p>
             <p className="text-sm mt-1">Add transactions to generate insights.</p>
           </div>
         </CardContent>
@@ -59,7 +59,7 @@ export function Recommendations({
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="bundles" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-4 bg-[#EBE4D5] p-1 rounded-xl">
             <TabsTrigger value="bundles" className="text-xs">
               <Gift className="w-3 h-3 mr-1" />
               Bundles
@@ -81,51 +81,51 @@ export function Recommendations({
           {/* Product Bundles */}
           <TabsContent value="bundles" className="space-y-3 mt-4">
             {bundles.length === 0 ? (
-              <div className="text-center py-8 text-gray-500 text-sm">
+              <div className="text-center py-8 text-[#716A5C] text-sm font-serif italic">
                 Not enough data for bundle recommendations yet.
               </div>
             ) : (
               bundles.map((bundle, index) => (
                 <div
                   key={bundle.id}
-                  className="border rounded-lg p-4 bg-gradient-to-br from-purple-50 to-pink-50"
+                  className="border border-[#D1C7B7] rounded-xl p-4 bg-gradient-to-br from-[#FDFBF7] to-[#FAF8F5] shadow-sm"
                 >
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <Gift className="w-5 h-5 text-purple-600" />
-                      <h3 className="font-semibold">Bundle #{index + 1}</h3>
+                      <Gift className="w-5 h-5 text-[#8C7A6B]" />
+                      <h3 className="font-serif font-semibold text-[#2C2C2C]">Curated Pairings #{index + 1}</h3>
                     </div>
-                    <Badge className="bg-red-500 text-white">
+                    <Badge className="bg-[#2C2C2C] text-[#FDFBF7] font-medium tracking-wide">
                       {bundle.discount}% OFF
                     </Badge>
                   </div>
                   
-                  <div className="flex flex-wrap gap-1 mb-3">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {bundle.products.map((product, i) => (
-                      <Badge key={i} variant="outline" className="bg-white">
+                      <Badge key={i} variant="outline" className="bg-white border-[#EBE4D5] text-[#4A4A4A] px-3 py-1">
                         {product}
                       </Badge>
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div className="bg-white/60 rounded p-2">
-                      <div className="text-xs text-gray-600">Expected Uplift</div>
-                      <div className="font-bold text-green-600">
+                  <div className="grid grid-cols-2 gap-3 text-sm mb-3">
+                    <div className="bg-[#FDFBF7] border border-[#EBE4D5] rounded-lg p-3 text-center">
+                      <div className="text-xs text-[#716A5C] uppercase tracking-wider mb-1">Expected Uplift</div>
+                      <div className="font-serif font-semibold text-lg text-[#2C2C2C]">
                         +{bundle.expectedUplift.toFixed(0)}%
                       </div>
                     </div>
-                    <div className="bg-white/60 rounded p-2">
-                      <div className="text-xs text-gray-600">Quality Score</div>
-                      <div className="font-bold text-purple-600">
+                    <div className="bg-[#FDFBF7] border border-[#EBE4D5] rounded-lg p-3 text-center">
+                      <div className="text-xs text-[#716A5C] uppercase tracking-wider mb-1">Synergy Score</div>
+                      <div className="font-serif font-semibold text-lg text-[#8C7A6B]">
                         {(bundle.score * 100).toFixed(0)}/100
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-2 text-xs text-purple-900 bg-white/50 rounded p-2">
-                    <strong>Action:</strong> Create a bundle offer. Customers are{' '}
-                    {bundle.expectedUplift.toFixed(0)}% more likely to buy these together.
+                  <div className="mt-2 text-xs text-[#4A4A4A] bg-[#EBE4D5]/30 rounded-lg p-3 border border-[#EBE4D5]/50 leading-relaxed">
+                    <strong className="text-[#2C2C2C]">Action:</strong> Bundle these fragrances together. Customers show a{' '}
+                    <span className="font-semibold text-[#8C7A6B]">{bundle.expectedUplift.toFixed(0)}%</span> higher intent to purchase them as a set.
                   </div>
                 </div>
               ))
@@ -135,41 +135,43 @@ export function Recommendations({
           {/* Cross-Sell Recommendations */}
           <TabsContent value="crosssell" className="space-y-3 mt-4">
             {crossSells.size === 0 ? (
-              <div className="text-center py-8 text-gray-500 text-sm">
+              <div className="text-center py-8 text-[#716A5C] text-sm font-serif italic">
                 Not enough data for cross-sell recommendations yet.
               </div>
             ) : (
               Array.from(crossSells.entries()).map(([product, recommendations]) => (
-                <div key={product} className="border rounded-lg p-4 bg-blue-50">
+                <div key={product} className="border border-[#D1C7B7] rounded-xl p-4 bg-[#FDFBF7] shadow-sm">
                   <div className="flex items-center gap-2 mb-3">
-                    <ShoppingBag className="w-5 h-5 text-blue-600" />
-                    <h3 className="font-semibold">When customer buys:</h3>
+                    <ShoppingBag className="w-5 h-5 text-[#8C7A6B]" />
+                    <h3 className="font-serif font-semibold text-[#2C2C2C]">When a guest selects:</h3>
                   </div>
                   
-                  <Badge className="mb-3 bg-blue-600 text-white">
+                  <Badge className="mb-4 bg-[#EBE4D5] text-[#2C2C2C] hover:bg-[#EBE4D5] border-none px-3 py-1 text-sm">
                     {product}
                   </Badge>
 
-                  <div className="text-sm mb-2 font-medium">Recommend:</div>
+                  <div className="text-sm mb-3 font-medium text-[#716A5C] uppercase tracking-wider">Suggest adding:</div>
                   
                   <div className="space-y-2">
                     {recommendations.slice(0, 3).map((rec, index) => (
-                      <div key={index} className="bg-white rounded p-3 border border-blue-200">
+                      <div key={index} className="bg-white rounded-lg p-3 border border-[#EBE4D5] transition-colors hover:border-[#D1C7B7]">
                         <div className="flex items-center justify-between mb-2">
-                          <div className="flex flex-wrap gap-1">
+                          <div className="flex flex-wrap gap-2">
                             {rec.recommendedProducts.map((p, i) => (
-                              <Badge key={i} variant="outline" className="text-xs">
+                              <Badge key={i} variant="outline" className="text-xs border-[#EBE4D5] text-[#4A4A4A]">
                                 {p}
                               </Badge>
                             ))}
                           </div>
                         </div>
-                        <div className="flex gap-3 text-xs">
-                          <span className="text-blue-600 font-medium">
-                            {(rec.confidence * 100).toFixed(0)}% confidence
+                        <div className="flex gap-4 text-xs mt-2">
+                          <span className="text-[#8C7A6B] font-medium flex items-center gap-1">
+                            <Star className="w-3 h-3" />
+                            {(rec.confidence * 100).toFixed(0)}% match
                           </span>
-                          <span className="text-purple-600 font-medium">
-                            {rec.lift.toFixed(1)}x lift
+                          <span className="text-[#2C2C2C] font-medium flex items-center gap-1">
+                            <Sparkles className="w-3 h-3" />
+                            {rec.lift.toFixed(1)}x boost
                           </span>
                         </div>
                       </div>
@@ -183,29 +185,29 @@ export function Recommendations({
           {/* Homepage Ranking */}
           <TabsContent value="homepage" className="space-y-3 mt-4">
             {homepageRanking.length === 0 ? (
-              <div className="text-center py-8 text-gray-500 text-sm">
+              <div className="text-center py-8 text-[#716A5C] text-sm font-serif italic">
                 Not enough data for homepage ranking yet.
               </div>
             ) : (
-              <div className="space-y-2">
-                <div className="text-sm text-gray-600 mb-3">
-                  Ranked by: sales frequency, revenue, cross-sell potential, and recency
+              <div className="space-y-3">
+                <div className="text-sm text-[#716A5C] mb-4 bg-[#EBE4D5]/30 p-3 rounded-lg border border-[#EBE4D5]/50 leading-relaxed">
+                  Curated based on: purchase frequency, revenue impact, cross-pollination potential, and seasonal relevance.
                 </div>
                 {homepageRanking.map((item, index) => (
                   <div
                     key={item.product}
-                    className="border rounded-lg p-3 bg-gradient-to-r from-yellow-50 to-orange-50 flex items-center gap-3"
+                    className="border border-[#D1C7B7] rounded-xl p-4 bg-gradient-to-r from-[#FDFBF7] to-[#FAF8F5] flex items-center gap-4 shadow-sm transition-transform hover:-translate-y-0.5"
                   >
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-400 text-yellow-900 font-bold">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#EBE4D5] text-[#2C2C2C] font-serif font-bold text-lg border border-[#D1C7B7]">
                       #{index + 1}
                     </div>
                     <div className="flex-1">
-                      <div className="font-semibold">{item.product}</div>
-                      <div className="text-xs text-gray-600">{item.reason}</div>
+                      <div className="font-serif font-semibold text-[#2C2C2C] text-lg">{item.product}</div>
+                      <div className="text-sm text-[#716A5C] mt-0.5">{item.reason}</div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-600">Score</div>
-                      <div className="font-bold text-orange-600">
+                    <div className="text-right bg-white p-2 rounded-lg border border-[#EBE4D5]">
+                      <div className="text-xs text-[#716A5C] uppercase tracking-wider mb-1">Score</div>
+                      <div className="font-serif font-bold text-lg text-[#8C7A6B]">
                         {(item.score * 100).toFixed(0)}
                       </div>
                     </div>
@@ -218,47 +220,49 @@ export function Recommendations({
           {/* Promo Suggestions */}
           <TabsContent value="promos" className="space-y-3 mt-4">
             {promoSuggestions.length === 0 ? (
-              <div className="text-center py-8 text-gray-500 text-sm">
-                Not enough data for promo suggestions yet.
+              <div className="text-center py-8 text-[#716A5C] text-sm font-serif italic">
+                Not enough data for promotional suggestions yet.
               </div>
             ) : (
               promoSuggestions.map((promo, index) => {
                 const typeColors = {
-                  bundle: 'from-purple-50 to-pink-50 border-purple-200',
-                  discount: 'from-red-50 to-orange-50 border-red-200',
-                  featured: 'from-blue-50 to-cyan-50 border-blue-200'
+                  bundle: 'from-[#FDFBF7] to-[#FAF8F5] border-[#D1C7B7]',
+                  discount: 'from-[#FAF8F5] to-[#EBE4D5] border-[#D1C7B7]',
+                  featured: 'from-[#FDFBF7] to-[#EBE4D5] border-[#D1C7B7]'
                 };
 
                 const typeIcons = {
-                  bundle: <Gift className="w-5 h-5 text-purple-600" />,
-                  discount: <Tag className="w-5 h-5 text-red-600" />,
-                  featured: <Star className="w-5 h-5 text-blue-600" />
+                  bundle: <Gift className="w-5 h-5 text-[#8C7A6B]" />,
+                  discount: <Tag className="w-5 h-5 text-[#2C2C2C]" />,
+                  featured: <Star className="w-5 h-5 text-[#8C7A6B]" />
                 };
 
                 return (
                   <div
                     key={index}
-                    className={`border rounded-lg p-4 bg-gradient-to-br ${typeColors[promo.type]}`}
+                    className={`border rounded-xl p-5 bg-gradient-to-br shadow-sm ${typeColors[promo.type]}`}
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      {typeIcons[promo.type]}
-                      <Badge variant="outline" className="bg-white">
-                        {promo.type.toUpperCase()}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-white rounded-lg shadow-sm border border-[#EBE4D5]">
+                        {typeIcons[promo.type]}
+                      </div>
+                      <Badge variant="outline" className="bg-white border-[#D1C7B7] text-[#2C2C2C] tracking-wider uppercase text-xs font-semibold">
+                        {promo.type}
                       </Badge>
-                      <div className="text-xs text-gray-600 ml-auto">
+                      <div className="text-xs text-[#716A5C] ml-auto bg-white/60 px-2 py-1 rounded-md border border-[#EBE4D5]/50">
                         Priority: {(promo.priority * 100).toFixed(0)}
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-1 mb-2">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {promo.products.map((product, i) => (
-                        <Badge key={i} className="bg-white text-gray-900">
+                        <Badge key={i} className="bg-[#2C2C2C] text-[#FDFBF7] hover:bg-[#2C2C2C]/90 px-3 py-1 font-medium">
                           {product}
                         </Badge>
                       ))}
                     </div>
 
-                    <div className="text-sm text-gray-700 bg-white/60 rounded p-2">
+                    <div className="text-sm text-[#4A4A4A] bg-white/80 rounded-lg p-3 border border-[#EBE4D5] leading-relaxed">
                       {promo.reason}
                     </div>
                   </div>
