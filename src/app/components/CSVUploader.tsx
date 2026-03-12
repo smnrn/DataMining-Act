@@ -190,7 +190,7 @@ export function CSVUploader({ onTransactionsLoaded, className }: CSVUploaderProp
         <div className="bg-[#FAF8F5] border border-[#EBE4D5] rounded-lg p-3 text-sm">
           <p className="font-serif font-medium text-[#2C2C2C] mb-1">CSV Format:</p>
           <p className="text-[#716A5C] text-xs mb-2 font-serif">
-            Upload your transaction CSV files (transactions_A.csv or transactions_B.csv).
+            Upload your transaction CSV files.
             Each row should contain comma-separated product names.
           </p>
           <div className="bg-white border border-[#EBE4D5] rounded p-2 text-xs font-mono mb-2 text-[#4A4A4A]">
@@ -199,9 +199,6 @@ export function CSVUploader({ onTransactionsLoaded, className }: CSVUploaderProp
             <div>"Matchstick-Jar,Rose-Scent"</div>
             <div>"Green-Wealth,Eucalyptus-Scent,Gold-Success"</div>
           </div>
-          <p className="text-xs text-[#5E503F] font-serif font-medium">
-            📁 Use the provided transactions_A.csv or transactions_B.csv files
-          </p>
         </div>
       </CardContent>
     </Card>
